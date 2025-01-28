@@ -22,7 +22,34 @@ Contraintes physiques : On guide le réseau en lui disant : "Tes prédictions do
 
 -----
 # Résoudre les équations de Navier Strocks avec PINNs
+## Équations mises en jeu
 
+Les équations de Navier-Stokes résolues par le PINN (Physics-Informed Neural Network) sont :
+Conservation de la quantité de mouvement (en x et y)
+
+$\frac{\partial u}{\partial t} + u \frac{\partial u}{\partial x} + v \frac{\partial u}{\partial y} = -\frac{\partial p}{\partial x} + \nu \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} \right)$
+    
+
+Équation en y :
+
+$\frac{\partial v}{\partial t} + u \frac{\partial v}{\partial x} + v \frac{\partial v}{\partial y} = -\frac{\partial p}{\partial y} + \nu \left( \frac{\partial^2 v}{\partial x^2} + \frac{\partial^2 v}{\partial y^2} \right)$
+
+
+Incompressibilité (condition de divergence nulle) :}
+
+
+$\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} = 0$
+
+
+
+Problème résolu
+
+Le code résout un problème d'écoulement fluide bidimensionnel autour d'un obstacle (un cylindre dans ce cas) en utilisant un réseau de neurones informé par la physique. L'objectif est d'estimer les champs de vitesse u(x,y,t), v(x,y,t) et de pression p(x,y,t) à partir de données d'observation partielles tout en respectant les lois physiques.
+En résumé :
+
+  Les prédictions du modèle (u, v, p) doivent satisfaire les équations de Navier-Stokes.
+    Les données d'entrée incluent des mesures partielles des vitesses (u,vu,v) dans un champ donné.
+    Le réseau est entraîné en minimisant une fonction de perte qui combine l'erreur par rapport aux données et le respect des contraintes physiques (les résidus des équations).
 
 The code implements a PINN to approximate the solution to the Navier-Stokes equations. It combines data-driven learning (from velocity and pressure data) with physical constraints imposed by the Navier-Stokes equations:
 
