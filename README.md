@@ -44,6 +44,9 @@ $\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} = 0$
 
 Problème résolu
 
+![p_field_lbfgs](https://github.com/user-attachments/assets/957f3595-775d-4437-9200-8ea7bff323b1)
+
+
 Le code résout un problème d'écoulement fluide bidimensionnel autour d'un obstacle (un cylindre dans ce cas) en utilisant un réseau de neurones informé par la physique. L'objectif est d'estimer les champs de vitesse u(x,y,t), v(x,y,t) et de pression p(x,y,t) à partir de données d'observation partielles tout en respectant les lois physiques.
 En résumé :
 
